@@ -8,6 +8,7 @@ class Fundraiser
     @name = name
     @donors = []
     @donations = Money.new(0)
+    validate(name)
     Fundraisers.instance.add(self)
   end
 
@@ -35,7 +36,7 @@ class Fundraiser
     HEREDOC
   end
 
-  def validate
+  def validate(name)
     names = Fundraisers.instance.all.map { |f| f.name }
     raise "A fundraiser with that name already exists" if names.include? name
   end

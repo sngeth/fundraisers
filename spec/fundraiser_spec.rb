@@ -39,4 +39,9 @@ describe Fundraiser do
 
     expect(fundraiser.list_of_donors).to eq expected
   end
+
+  it "should not create duplicate fundraisers" do
+    Fundraiser.new("A fundraiser")
+    expect { Fundraiser.new("A fundraiser") }.to raise_error "A fundraiser with that name already exists"
+  end
 end
