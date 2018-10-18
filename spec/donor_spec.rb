@@ -11,7 +11,7 @@ describe Donor do
     donor = Donor.new("Sid")
     fundraiser1 = Fundraiser.new("Chess Club")
     fundraiser2 = Fundraiser.new("Programming Club")
-    Fundraisers.instance.add(Fundraiser.new("Did not donate to this"))
+    Fundraiser.new("Did not donate to this")
 
     fundraiser1.donate(donor, 100_00)
     fundraiser2.donate(donor, 100_00)

@@ -4,7 +4,7 @@ require_relative '../service/fundraisers'
 class Fundraiser
   attr_accessor :id, :name, :donors, :donations
 
-  def initialize(name = "Unknown Fundraiser")
+  def initialize(name = "Unknown Fundraiser #{Random.new}")
     @name = name
     @donors = []
     @donations = Money.new(0)
@@ -33,5 +33,10 @@ class Fundraiser
       Thank you to our wonderful list of donors:
       #{donators}
     HEREDOC
+  end
+
+  def validate
+    names = Fundraisers.instance.all.map { |f| f.name }
+    raise "A fundraiser with that name already exists" if names.include? name
   end
 end
