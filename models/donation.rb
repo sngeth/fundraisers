@@ -1,11 +1,11 @@
 require 'money'
+require 'date'
 
 class Donation
-  attr_accessor :amount
+  attr_accessor :amount, :date
 
   def initialize(amount, currency = :usd)
-    Money.locale_backend = :i18n
-    I18n.enforce_available_locales = false
     @amount = Money.new(amount, currency)
+    @date = DateTime.now.strftime("%B %d, %Y")
   end
 end

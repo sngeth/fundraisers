@@ -1,11 +1,14 @@
 require_relative './donation'
+require_relative '../service/fundraisers'
 
 class Fundraiser
-  attr_accessor :name, :donors, :donations
+  attr_accessor :id, :name, :donors, :donations
 
-  def initialize
+  def initialize(name = "Unknown Fundraiser")
+    @name = name
     @donors = []
     @donations = Money.new(0)
+    Fundraisers.instance.add(self)
   end
 
   def donate(donor, amount)
